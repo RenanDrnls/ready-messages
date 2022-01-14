@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <%- include('../partials/head')%>
+    <body>
+        <% messages.forEach((message) => { %>
+            <h2><%= message.title_message %></h2>
+            <p><%= message.content_message %></p>
+            <a href="/deletemessage/<%= message.id_message %>"><button>Deletar</button></a>
+            <hr>
+        <% }) %>
+    </body>
+</html>
