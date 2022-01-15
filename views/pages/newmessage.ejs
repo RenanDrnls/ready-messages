@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <%- include('../partials/head')%>
+    <body>
+        <form action="/addmessage" method="POST">
+            <label for="newtitle">Adicione um título:</label>
+                <input type="text" name="newtitle" />
+            <label for="newcontent">Adicione um conteúdo:</label>
+                <textarea name="newcontent" id="" cols="30" rows="10"></textarea>
+            <button type="submit">Criar</button>
+        </form>
+    </body>
+</html>

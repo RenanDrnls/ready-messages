@@ -18,6 +18,9 @@ app.set('view engine', 'ejs')
 const router = express.Router()
 app.use('/', router)
 
+//Uso de arquivos estáticos
+app.use(express.static(__dirname + '/public'))
+
 //Rota raíz
 router.get('/', (req, res) => {
     res.redirect('/home')
@@ -56,6 +59,10 @@ router.get('/searchmessages', (req, res) => {
     } else {
         res.redirect('/allmessages')
     }
+})
+
+router.get('/newmessage', (req, res) => {
+    res.render('pages/newmessage')
 })
 
 //Cria uma nova mensagem
