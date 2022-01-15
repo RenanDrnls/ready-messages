@@ -32,7 +32,7 @@ router.get('/allmessages', (req, res) => {
     Message.findAll({
         attributes: ['id_message', 'title_message', 'content_message']
     }).then((messages) => {
-        res.render('pages/allmessages', {messages: messages})
+        res.render('pages/messageslist', {messages: messages})
     }).catch((err) => {
         res.send(`Error on catch all messages from database: ${err}`)
     })
@@ -49,7 +49,7 @@ router.get('/searchmessages', (req, res) => {
                 }
             }
         }).then((messages) => {
-            res.render('pages/searchresult', {messages: messages})
+            res.render('pages/messageslist', {messages: messages})
         }).catch((err) => {
             res.send(`Error on search: ${err}`);
         })
@@ -70,7 +70,8 @@ router.post('/addmessage', (req, res) => {
     })
 })
 
-app.get('/deletemessage/:id', (req, res) => {
+//Deletar Mensagem selecionada
+router.get('/deletemessage/:id', (req, res) => {
     Message.destroy({
         where: {
             id_message: req.params.id
@@ -79,6 +80,33 @@ app.get('/deletemessage/:id', (req, res) => {
         res.send('Mensagem deletada com sucesso')
     }).catch((err) => {
         res.send(`Erro ao deletar a mensagem: ${err}`)
+    })
+})
+
+router.get('/edit/:id', (req, res) => {
+    Message.findAll({
+        where: {
+            id_message: req.params.id
+        }
+    }).then((message) => {
+        res.render('pages/uptmessage', {message: message})
+    }).catch((err) => {
+        res.send(`Error on open the message to edit: ${err}`)
+    })
+})
+
+router.post('/update/:id', (req, res) => {
+    Message.update({
+        title_message: req.body.upttitle,
+        content_message: req.body.uptcontent
+    }, {
+        where: {
+            id_message: req.params.id
+        }
+    }).then(() => {
+        res.send(`Message updated`)
+    }).catch((err) => {
+        res.send(`Error on update message: ${err}`)
     })
 })
 

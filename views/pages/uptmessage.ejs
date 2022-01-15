@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <%- include('../partials/head')%>
+    <body>
+        <% message.forEach((message) => { %>
+            <form action="/update/<%= message.id_message %>" method="post">
+                <input type="text" name="upttitle" value="<%= message.title_message %>">
+                <textarea name="uptcontent" id="" cols="30" rows="10"><%= message.content_message %></textarea>
+                <button type="submit">Atualizar</button>
+            </form>
+        <%}) %>
+    </body>
+</html>
