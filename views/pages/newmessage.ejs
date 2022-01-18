@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-    <%- include('../partials/head')%>
-    <body>
-        <form action="/addmessage" method="POST">
+    <head>
+        <%- include('../partials/head')%>
+    </head>
+    <body id="newMessageBody" class="d-flex flex-dire-column just-content-center alg-items-center">
+        <form class="d-flex flex-dire-column just-content-center alg-items-center" id="newMessageForm" action="/addmessage" method="POST">
             <label for="newtitle">Adicione um título:</label>
-                <input type="text" name="newtitle" />
+                <input required="required" type="text" name="newtitle" />
             <label for="newcontent">Adicione um conteúdo:</label>
-                <textarea name="newcontent" id="" cols="30" rows="10"></textarea>
+                <textarea required="required" name="newcontent" id="" cols="45" rows="20"></textarea>
             <button type="submit">Criar</button>
         </form>
     </body>

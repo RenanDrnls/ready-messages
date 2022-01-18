@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <%- include('../partials/head')%>
+    <head>
+        <%- include('../partials/head')%>
+    </head>
     <body>
         <% messages.forEach((message) => { %>
             <div class="message">
                 <h2><%= message.title_message %></h2>
                 <p><%= message.content_message %></p>
                 <a href="/deletemessage/<%= message.id_message %>">
-                    <button  class="delMessageBtn" onclick = "confirmDelete()">Deletar</button>
+                    <button  class="delMessageBtn">Deletar</button>
                 </a>
-                <a href="/edit/<%= message.id_message %>"><button>Alterar dados</button></a>
+                <a href="/edit/<%= message.id_message %>">
+                    <button>Alterar dados</button>
+                </a>
                 <button>Copiar para a área de transferência</button>
             </div>
             <hr>

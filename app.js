@@ -79,15 +79,15 @@ router.post('/addmessage', (req, res) => {
 
 //Deletar Mensagem selecionada
 router.get('/deletemessage/:id', (req, res) => {
-    Message.destroy({
-        where: {
-            id_message: req.params.id
-        }
-    }).then(() => {
-        res.send('Mensagem deletada com sucesso')
-    }).catch((err) => {
-        res.send(`Erro ao deletar a mensagem: ${err}`)
-    })
+        Message.destroy({
+            where: {
+                id_message: req.params.id
+           }
+        }).then(() => {
+            res.send('Mensagem deletada')
+        }).catch((err) => {
+            res.send(`Erro ao deletar a mensagem: ${err}`)
+        })
 })
 
 router.get('/edit/:id', (req, res) => {
