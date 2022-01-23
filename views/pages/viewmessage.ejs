@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <%- include('../partials/head') %>
+    <body id="viewBody" class="d-flex direction-column align-center">
+        <div class="full-modal d-flex align-center justify-center">
+            <div class="modal-container d-flex direction-column align-center justify-center">
+                <p>Tem certeza que deseja deletar esta mensagem?</p>
+                <div class="confirmBtns">
+                    <% message.forEach(mess => { %>
+                        <a href="/message/delete/<%= mess.id_message %>">
+                            <button>Sim</button>
+                        </a>
+                        <button id="negativeDel">Não</button>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+        <div class="container d-flex direction-column align-center">
+            <h2>Visualizar mensagem</h2>
+            <% message.forEach((mess) => { %>
+                <h3><%= mess.title_message %></h3>
+                <div class="view-message d-flex direction-column align-center">
+                    <textarea disabled name="" id="messageContentView" cols="60" rows="25"><%- mess.content_message %></textarea>
+                    <div class="button-container">
+                        <button id="delMessageBtn">Deletar</button>
+                        <a href="/messages/update/<%= mess.id_message %>">
+                            <button>Atualizar</button>
+                        </a>
+                        <button id="copyToClipboard">Copiar</button>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+        <script src="/scripts/script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('../partials/head') %>
+    </head>
+    <body id="crtMessageBody" class="d-flex direction-column align-center">
+        <h2>Criando Mensagem</h2>
+        <form id="crtMessageForm" class="d-flex direction-column align-center" action="/message/add" method="POST">
+            <label for="title">Insira um título</label>
+                <input minlength="1" maxlength="70" type="text" required="required" name="title" autocomplete="off" />
+            <label for="content">Insira um conteúdo</label>
+                <textarea id="msgcnttextarea" minlength="1" maxlength="300" name="content" required="required" cols="30" rows="10"></textarea>
+            <button type="submit">Criar</button>
+        </form>
+    </body>
+</html>

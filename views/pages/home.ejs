@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <%- include('../partials/head')%>
+        <%- include('../partials/head') %>
     </head>
-    <body id="homeBody" class="d-flex flex-dire-column just-content-center alg-items-center">
-        <div id="homeBox" class="d-flex flex-dire-column just-content-center alg-items-center">
-            <h2>The Ready Messages Project</h2>
-            <form id="searchFormHome" action="/searchmessages" method="GET">
-                <label for="search">Busque uma mensagem pelo título:</label>
-                <div class="d-flex flex-dire-column alg-items-center">
-                    <input type="text" name="search" autocomplete="off" />
-                    <button type="submit" id="sendSearch">Buscar</button>
-                </div>
-            </form>
-            <p>OU<br>crie uma nova mensagem:</p>
-            <a href="/newmessage"><button id="startCreateMessage">Criar mensagem</button></a>
-        </div>
+    <body id="bodyHome" class="d-flex direction-column justify-center align-center">
+        <h1>Ready-Messages Project</h1>
+        <form id="searchMessageForm" class="d-flex direction-column align-center" action="/messages/search" method="GET">
+            <label for="search">Busque uma mensagem pelo título</label>
+            <input type="text" name="search" autocomplete="off" />
+            <button type="submit">Buscar</button>
+        </form>
+        <p>OU</p>
+        <p>Crie uma nova mensagem</p>
+        <a href="/message/create">
+            <button id="createMessage">Criar</button>
+        </a>
     </body>
 </html>

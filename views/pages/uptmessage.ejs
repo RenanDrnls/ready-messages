@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
     <head>
-        <%- include('../partials/head')%>
+        <%- include('../partials/head') %>
     </head>
-    <body>
-        <% message.forEach((message) => { %>
-            <form action="/update/<%= message.id_message %>" method="POST">
-                <label for="upttile">Título</label>
-                    <input required="required" type="text" name="upttitle" value="<%= message.title_message %>">
-                <label for="uptcontent">Conteúdo</label>
-                    <textarea required="required" name="uptcontent" id="" cols="30" rows="10"><%= message.content_message %></textarea>
-                <button type="submit">Atualizar</button>
-            </form>
-        <%}) %>
+    <body id="updateBody" class="d-flex direction-column align-center">
+        <div class="container d-flex direction-column align-center">
+            <h2>Atualizar mensagem</h2>
+            <% messages.forEach((message) => { %>
+                <form id="updateForm" class="d-flex direction-column align-center" action="/messages/update/<%= message.id_message %>" method="POST">
+                    <label for="newtitle">Novo título</label>
+                        <input type="text" name="newtitle" value="<%= message.title_message %>" />
+                    <label for="newcontent">Novo conteúdo</label>
+                        <textarea name="newcontent" id="" cols="60" rows="25"><%= message.content_message %></textarea>
+                    <button type="submit">Atualizar</button>    
+                </form>
+            <% }); %>
+        </div> 
     </body>
 </html>

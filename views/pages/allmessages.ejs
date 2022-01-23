@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <%- include('../partials/head')%>
+    <body id="allMessagesBody" class="d-flex direction-column align-center">
+        <h2>Todas as Mensagens</h2>
+        <div class="messages-content d-flex justify-center wrap-wrap">
+            <% messages.forEach((message) => { %>
+                <a href="/messages/view/<%= message.id_message %>">
+                    <div class="message-content d-flex direction-column">
+                        <h3 class="title-message"><%= message.title_message %></h3>
+                        <p class="content-message"><%- message.content_message %></p>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+    </body>
+</html>
