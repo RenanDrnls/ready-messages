@@ -1,4 +1,4 @@
-let copyBtn = document.querySelector('#copyToClipboard')
+const copyBtn = document.querySelector('#copyToClipboard')
 
 copyBtn.addEventListener('click', () => {
     let message = document.querySelector('#messageContentView')
@@ -7,14 +7,14 @@ copyBtn.addEventListener('click', () => {
     alert('Conteúdo copiado')
 })
 
-let modal = document.querySelector('.full-modal')
-let deleteBtn = document.querySelector('#delMessageBtn')
+const modal = document.querySelector('.full-modal')
+const deleteBtn = document.querySelector('#delMessageBtn')
 
 deleteBtn.addEventListener('click', () => {
     modal.style.display = 'block'
 })
 
-let cancelDeleteMess = document.querySelector('#negativeDel')
+const cancelDeleteMess = document.querySelector('#negativeDel')
 
 cancelDeleteMess.addEventListener('click', () => {
     modal.style.display = 'none'

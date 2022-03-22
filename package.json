@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Projeto de mensagens pre-prontas",
   "main": "index.js",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "node app.js"
   },
   "keywords": [
     "mensagens",

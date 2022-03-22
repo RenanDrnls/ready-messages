@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-const port = 3000
-
+const PORT = process.env.PORT || 3000
 
 //Configura o APP para ler as requisições POST e
 //guardar em formato JSON
@@ -24,6 +23,6 @@ app.use((req, res, next) => {
 })
 
 //Run Server
-app.listen(port, () => {
-    console.log(`Server running at port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server running at port ${PORT}`);
 })
