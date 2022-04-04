@@ -8,13 +8,13 @@
                 <h4>Não há mensagens salvas!!</h4>
             <% } else { %>
                 <% messages.forEach((message) => { %>
-                <a href="/messages/view/<%= message.id_message %>">
-                    <div class="message-content d-flex direction-column">
-                        <h3 class="title-message"><%= message.title_message %></h3>
-                        <p class="content-message"><%- message.content_message %></p>
-                    </div>
-                </a>
-            <% }) %>
+                    <a href="/messages/view/<%= message.id_message %>">
+                        <div class="message-content d-flex direction-column">
+                            <h3 class="title-message"><%= message.title_message %></h3>
+                            <p class="content-message"><%- message.content_message %></p>
+                        </div>
+                    </a>
+                <% }) %>
             <% } %>
         </div>
     </body>

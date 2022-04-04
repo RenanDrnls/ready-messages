@@ -2,6 +2,7 @@ const Message = require('../database/Message')
 const { Sequelize } = require('../database/db')
 const Op = Sequelize.Op
 const express = require('express')
+const { response } = require('express')
 const router = express.Router()
 
 //Redireciona para a rota /home quando não for passado nenhuma
@@ -52,15 +53,19 @@ router.get('/message/create', (req, res) => {
 
 //Rota para salvar uma nova mensagem
 router.post('/message/add', (req, res) => {
-    Message.create({
-        title_message: req.body.title,
-        content_message: req.body.content
-    }).then(() => {
-        //Redireciona para a rota Home quando salvo com sucesso
-        res.redirect('/home')
-    }).catch((err) => {
-        res.send(`Error on create a new message: ${err}`)
-    })
+    if(req.body.title && req.body.content){
+        Message.create({
+            title_message: req.body.title,
+            content_message: req.body.content
+        }).then(() => {
+            //Redireciona para a rota Home quando salvo com sucesso
+            res.redirect("/home?s=" + encodeURIComponent("message-created"))
+        }).catch((err) => {
+            res.send(`Error on create a new message: ${err}`)
+        })
+    } else {
+        res.send("Campos vazios são inválidos")
+    }
 })
 
 //Rota GET para deletar uma mensagem
@@ -70,7 +75,7 @@ router.get('/message/delete/:id', (req, res) => {
             id_message: req.params.id
         }
     }).then(() => {
-        res.send('Mensagem deletada com sucesso')
+        res.redirect("/home?s=" + encodeURIComponent("message-deleted"))
     }).catch((err) => {
         res.send(`Erro ao deletar a mensagem: ${err}`)
     })
@@ -83,7 +88,11 @@ router.get('/messages/view/:id', (req, res) => {
             id_message: req.params.id
         }
     }).then((message) => {
-        res.render('pages/viewmessage', {message: message})
+        if(message.length === 1){
+            res.render('pages/viewmessage', {message: message})
+        } else {
+            res.render("pages/404")
+        }
     }).catch((err) => {
         res.send(`Não foi possível abrir esta mensagem: ${err}`)
     })
@@ -96,26 +105,34 @@ router.get('/messages/update/:id', (req, res) => {
             id_message: req.params.id
         }
     }).then((messages) => {
-        res.render('pages/uptmessage', {messages: messages})
+        if(messages.lenth === 1) {
+            res.render('pages/uptmessage', {messages: messages})
+        } else {
+            res.render("pages/404")
+        }
     }).catch((err) => {
         res.send(`Erro ao abrir a mensagem para atualizar: ${err}`)
     })
 })
 
 router.post('/messages/update/:id', (req, res) => {
-    Message.update({
-        title_message: req.body.newtitle,
-        content_message: req.body.newcontent
-    },
-    {
-        where: {
-            id_message: req.params.id
-        }
-    }).then(() => {
-        res.redirect('/home')
-    }).catch((err) => {
-        res.send(`Não foi possível atualizar a mensagem:  ${err}`)
-    })
+    if(req.body.newtitle && req.body.newcontent){
+        Message.update({
+            title_message: req.body.newtitle,
+            content_message: req.body.newcontent
+        },
+        {
+            where: {
+                id_message: req.params.id
+            }
+        }).then(() => {
+            res.redirect('/home')
+        }).catch((err) => {
+            res.send(`Não foi possível atualizar a mensagem:  ${err}`)
+        })
+    } else {
+        res.send("Campos com parâmetros zerados, inválido")
+    }
 })
 
 module.exports = router

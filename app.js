@@ -1,6 +1,8 @@
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
+
+const app = express()
+
 const PORT = process.env.PORT || 3000
 
 //Configura o APP para ler as requisições POST e
